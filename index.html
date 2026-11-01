@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunmu©</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Microsoft YaHei, sans-serif;
+        }
+
+        body {
+            color: #111111;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(
+                120deg,
+                #ffd6ec,
+                #ffe9b3,
+                #d4f5c7,
+                #c7f0ff,
+                #e0d4ff,
+                #ffd6ec
+            );
+            background-size: 300% 300%;
+            animation: rainbow-bg 10s ease infinite;
+        }
+
+        @keyframes rainbow-bg {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        nav {
+            height: 48px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 99;
+            background: linear-gradient(
+                120deg,
+                rgba(255, 214, 236, 0.85),
+                rgba(255, 233, 179, 0.85),
+                rgba(212, 245, 199, 0.85),
+                rgba(199, 240, 255, 0.85),
+                rgba(224, 212, 255, 0.85),
+                rgba(255, 214, 236, 0.85)
+            );
+            background-size: 300% 300%;
+            animation: rainbow-bg 10s ease infinite;
+            backdrop-filter: blur(6px);
+        }
+
+        .menu-btn {
+            font-size: 22px;
+            cursor: pointer;
+            margin-right: 16px;
+            color: #000;
+        }
+
+        .header-logo {
+            height: 32px;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 48px;
+            left: -280px;
+            width: 280px;
+            height: calc(100vh - 48px);
+            border-right: 1px solid rgba(255, 255, 255, 0.6);
+            transition: 0.3s ease;
+            z-index: 98;
+            padding-top: 20px;
+            background: linear-gradient(
+                160deg,
+                rgba(255, 214, 236, 0.9),
+                rgba(255, 233, 179, 0.9),
+                rgba(212, 245, 199, 0.9),
+                rgba(199, 240, 255, 0.9),
+                rgba(224, 212, 255, 0.9),
+                rgba(255, 214, 236, 0.9)
+            );
+            background-size: 300% 300%;
+            animation: rainbow-bg 10s ease infinite;
+            backdrop-filter: blur(8px);
+        }
+
+        .drawer.open {
+            left: 0;
+        }
+
+        .drawer-item {
+            padding: 12px 25px;
+            font-size: 15px;
+            cursor: pointer;
+            color: #222;
+        }
+
+        .drawer-item:hover {
+            background: rgba(255, 255, 255, 0.45);
+        }
+
+        .drawer-title-text {
+            padding: 12px 25px;
+            font-size: 14px;
+            color: #444;
+            pointer-events: none;
+            letter-spacing: 2px;
+        }
+
+        .sub-item {
+            padding-left: 45px;
+            font-size: 14px;
+        }
+
+        .page {
+            padding-top: 120px;
+            text-align: center;
+            transition: 0.3s;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 40px;
+        }
+
+        .page.shift {
+            margin-left: 280px;
+        }
+
+        h1.gunmu-main-title {
+            font-size: 56px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .desc {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        /* 透明按钮 */
+        .btn,
+        .btn-gray {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #ff4d6d;
+            border: 2px solid #ff4d6d;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+            backdrop-filter: blur(4px);
+            transition: 0.25s ease;
+            margin: 8px;
+        }
+
+        .btn:hover,
+        .btn-gray:hover {
+            background: rgba(255, 77, 109, 0.18);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255, 77, 109, 0.25);
+        }
+
+        .version-text {
+            margin: 30px 0;
+            font-size: 17px;
+            color: #222;
+        }
+
+        .download-pwd-tip {
+            font-size: 14px;
+            color: #333;
+            margin-left: 6px;
+        }
+
+        /* 更新日志卡片，改成截图同款冷调浅冰白 */
+        .log-list {
+            background: rgba(245, 248, 252, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(180, 210, 255, 0.18);
+            border-radius: 24px;
+            padding: 32px 24px;
+            text-align: left;
+            backdrop-filter: blur(6px);
+        }
+
+        .log-item {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-name {
+            font-weight: 500;
+            color: #222;
+            font-size: 24px;
+        }
+
+        .log-size {
+            color: #444;
+            font-size: 18px;
+            margin: 6px 0 12px;
+        }
+
+        .log-tip {
+            font-size: 16px;
+            color: #555;
+            margin-top: 8px;
+        }
+
+        #page-about {
+            position: relative;
+            min-height: calc(100vh - 48px);
+            border-radius: 16px;
+            padding: 40px 20px;
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(6px);
+        }
+
+        #page-about h1,
+        #page-about .desc {
+            color: #222;
+        }
+
+        .about-logo {
+            width: 320px;
+            height: auto;
+            margin: 30px auto;
+            display: block;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 12px;
+            border-radius: 12px;
+        }
+
+        .copyright {
+            margin-top: 40px;
+            color: #222;
+            font-size: 15px;
+        }
+
+        /* 首页下载块，统一同款色调 */
+        .home-download-block {
+            margin-top: 80px;
+            background: rgba(245, 248, 252, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px;
+            padding: 30px 20px;
+            backdrop-filter: blur(6px);
+        }
+
+        .home-download-block h2 {
+            margin-bottom: 24px;
+            color: #222;
+        }
+
+        .greeting-text {
+            font-size: 22px;
+            color: #222;
+            margin-bottom: 30px;
+        }
+
+        .qq-footer {
+            margin-top: 40px;
+            font-size: 15px;
+            color: #222;
+        }
+
+        /* 下载卡片：和日志页统一，截图同款冰白 */
+        .download-card {
+            background: rgba(245, 248, 252, 0.88);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 30px rgba(180, 210, 255, 0.18);
+            border-radius: 24px;
+            padding: 40px 24px;
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .download-card > h1 {
+            margin-bottom: 24px;
+        }
+        .download-row {
+            margin: 18px 0;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <div class="menu-btn" onclick="toggleMenu()">☰</div>
+    <img class="header-logo" src="https://p3-flow-image-sign.byteimg.com/tos-cn-i-a9rns2rl98/30111400083440489411421042400101~tplv-a9rns2rl98-image.image" alt="G Logo">
+</nav>
+
+<div class="drawer" id="drawer">
+    <div class="drawer-item" onclick="toggleMenu();switchPage('home')">首页</div>
+    <div class="drawer-title-text">----软件----</div>
+    <div class="drawer-item sub-item" onclick="toggleMenu();switchPage('download')">AptOS 下载</div>
+    <div class="drawer-item sub-item" onclick="toggleMenu();switchPage('changelog')">AptOS 更新日志</div>
+    <div class="drawer-item" onclick="toggleMenu();switchPage('about')">关于我们</div>
+</div>
+
+<!-- 首页 -->
+<div class="page" id="page-home">
+    <h1 class="gunmu-main-title">Gunmu©</h1>
+    <p class="greeting-text" id="greetingText">早上好</p>
+
+    <div class="home-download-block">
+        <h2>软件下载</h2>
+        <button class="btn" onclick="switchPage('download')">AptOS</button>
+        <p class="log-tip" style="margin-top:12px;">点击进入 AptOS 主下载界面</p>
+    </div>
+    <div class="qq-footer">QQ群:454961204</div>
+</div>
+
+<!-- AptOS 主下载界面 -->
+<div class="page" id="page-download" style="display:none;">
+    <div class="download-card">
+        <h1>下载 APTOS 操作系统</h1>
+        <div class="download-row">
+            <p class="version-text">当前版本：<span id="verText">APTOS 32 位版</span></p>
+        </div>
+        <div class="download-row">
+            <button class="btn-gray" onclick="changeVer()">切换系统版本</button>
+        </div>
+        <div class="download-row">
+            <span>
+                <a id="downloadLink" target="_blank">
+                    <button class="btn">立即下载当前版本</button>
+                </a>
+                <span class="download-pwd-tip" id="pwdTip"></span>
+            </span>
+        </div>
+        <div class="download-row">
+            <div class="qq-footer" style="margin:0;">QQ群:454961204</div>
+        </div>
+    </div>
+</div>
+
+<!-- 更新日志 -->
+<div class="page" id="page-changelog" style="display:none;">
+    <h1>更新日志</h1>
+    <p class="desc">所有镜像，按文件大小从大到小排列</p>
+    <div class="log-list">
+        <div class="log-item">
+            <div class="log-name">AptOS2_0 27H1 Gunmu1_3.img</div>
+            <div class="log-size">大小：64 MB</div>
+            <a href="https://wwbbj.lanzout.com/irroY4e5xo9a" target="_blank">
+                <button class="btn-gray">前往蓝奏云下载</button>
+            </a>
+            <div class="log-tip">💡提取密码：ck5v，打开网盘页面输入密码下载镜像</div>
+        </div>
+        <div class="log-item">
+            <div class="log-name">AptOS1_0 26H1 Gunmu1_0.img</div>
+            <div class="log-size">大小：1.4 MB</div>
+            <a href="https://wwbbj.lanzout.com/iI8xC4e5zejc" target="_blank">
+                <button class="btn-gray">前往蓝奏云下载</button>
+            </a>
+            <div class="log-tip">💡提取密码：4eqi，打开网盘页面输入密码下载镜像</div>
+        </div>
+    </div>
+    <div class="qq-footer">QQ群:454961204</div>
+</div>
+
+<!-- 关于 -->
+<div class="page" id="page-about" style="display:none;">
+    <h1>关于</h1>
+    <p class="desc">Gunmu© / APTOS 自研操作系统项目</p>
+    <img class="about-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Qemu_logo.svg/600px-Qemu_logo.svg.png" alt="项目标识">
+    <p class="copyright">一切版权 ©️ 计鸽ace</p>
+    <div class="qq-footer">QQ群:454961204</div>
+</div>
+
+<script>
+    function toggleMenu() {
+        const d = document.getElementById("drawer");
+        d.classList.toggle("open");
+        document.querySelectorAll(".page").forEach(p => {
+            p.classList.toggle("shift");
+        })
+    }
+
+    function switchPage(name) {
+        const pages = ["home", "download", "changelog", "about"];
+        pages.forEach(p => {
+            document.getElementById("page-" + p).style.display = "none";
+        })
+        document.getElementById("page-" + name).style.display = "block";
+    }
+
+    // 自动显示早上好/晚上好
+    function setGreeting() {
+        const hour = new Date().getHours();
+        const greeting = hour < 18 ? "早上好" : "晚上好";
+        document.getElementById("greetingText").innerText = greeting;
+    }
+    setGreeting();
+
+    // AptOS 下载版本逻辑
+    const versions = [
+        {
+            name: "APTOS 32 位版",
+            url: "https://wwbbj.lanzout.com/irroY4e5xo9a",
+            filename: "aptos32.img",
+            pwd: "提取密码：ck5v"
+        },
+        {
+            name: "APTOS 16 位经典版",
+            url: "https://wwbbj.lanzout.com/iI8xC4e5zejc",
+            filename: "aptos16.img",
+            pwd: "提取密码：4eqi"
+        }
+    ];
+    let now = 0;
+
+    const verText = document.getElementById("verText");
+    const downLink = document.getElementById("downloadLink");
+    const pwdTip = document.getElementById("pwdTip");
+
+    function changeVer() {
+        now++;
+        if (now >= versions.length) now = 0;
+        updateDownloadUi();
+    }
+
+    function updateDownloadUi() {
+        const v = versions[now];
+        verText.innerText = v.name;
+        downLink.href = v.url;
+        downLink.download = v.filename;
+        pwdTip.innerText = v.pwd;
+    }
+
+    updateDownloadUi();
+</script>
+</body>
+</html>
