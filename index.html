@@ -11,7 +11,6 @@
             box-sizing: border-box;
             font-family: "Segoe UI", Microsoft YaHei, sans-serif;
         }
-
         body {
             color: #111111;
             min-height: 100vh;
@@ -28,19 +27,11 @@
             background-size: 300% 300%;
             animation: rainbow-bg 10s ease infinite;
         }
-
         @keyframes rainbow-bg {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-
         nav {
             height: 48px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.6);
@@ -64,24 +55,22 @@
             animation: rainbow-bg 10s ease infinite;
             backdrop-filter: blur(6px);
         }
-
         .menu-btn {
             font-size: 22px;
             cursor: pointer;
             margin-right: 16px;
             color: #000;
         }
-
         .drawer {
             position: fixed;
             top: 48px;
             left: -280px;
             width: 280px;
             height: calc(100vh - 48px);
-            border-right: 1px solid rgba(255, 255, 255, 0.6);
+            border-right: 1px solid rgba(255,255,255,0.6);
             transition: 0.3s ease;
             z-index: 98;
-            padding-top: 20px;
+            padding-top:20px;
             background: linear-gradient(
                 160deg,
                 rgba(255, 214, 236, 0.9),
@@ -91,134 +80,83 @@
                 rgba(224, 212, 255, 0.9),
                 rgba(255, 214, 236, 0.9)
             );
-            background-size: 300% 300%;
+            background-size:300% 300%;
             animation: rainbow-bg 10s ease infinite;
             backdrop-filter: blur(8px);
         }
-
-        .drawer.open {
-            left: 0;
-        }
-
+        .drawer.open { left:0; }
         .drawer-item {
-            padding: 12px 25px;
-            font-size: 15px;
-            cursor: pointer;
-            color: #222;
+            padding:12px 25px;
+            font-size:15px;
+            cursor:pointer;
+            color:#222;
         }
-
-        .drawer-item:hover {
-            background: rgba(255, 255, 255, 0.45);
-        }
-
+        .drawer-item:hover { background:rgba(255,255,255,0.45); }
         .drawer-title-text {
-            padding: 12px 25px;
-            font-size: 14px;
-            color: #444;
-            pointer-events: none;
-            letter-spacing: 2px;
+            padding:12px 25px;
+            font-size:14px;
+            color:#444;
+            pointer-events:none;
+            letter-spacing:2px;
         }
-
-        .sub-item {
-            padding-left: 45px;
-            font-size: 14px;
-        }
-
+        .sub-item { padding-left:45px; font-size:14px; }
         .page {
-            padding-top: 120px;
-            text-align: center;
-            transition: 0.3s;
-            max-width: 900px;
-            margin: 0 auto;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 40px;
+            padding-top:120px;
+            text-align:center;
+            transition:0.3s;
+            max-width:900px;
+            margin:0 auto;
+            padding-left:20px;
+            padding-right:20px;
+            padding-bottom:40px;
         }
-
-        .page.shift {
-            margin-left: 280px;
-        }
-
+        .page.shift { margin-left:280px; }
         h1.gunmu-main-title {
-            font-size: 56px;
-            font-weight: bold;
-            color: #222;
-            margin-bottom: 20px;
+            font-size:56px;
+            font-weight:bold;
+            color:#222;
+            margin-bottom:20px;
         }
-
-        .desc {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 50px;
+        .desc { font-size:18px; color:#333; margin-bottom:50px; }
+        .btn,.btn-gray {
+            display:inline-block;
+            padding:12px 24px;
+            font-size:15px;
+            font-weight:700;
+            color:#ff4d6d;
+            border:2px solid #ff4d6d;
+            border-radius:12px;
+            cursor:pointer;
+            text-decoration:none;
+            background:transparent;
+            backdrop-filter:blur(4px);
+            transition:0.25s ease;
+            margin:8px;
         }
-
-        .btn,
-        .btn-gray {
-            display: inline-block;
-            padding: 12px 24px;
-            font-size: 15px;
-            font-weight: 700;
-            color: #ff4d6d;
-            border: 2px solid #ff4d6d;
-            border-radius: 12px;
-            cursor: pointer;
-            text-decoration: none;
-            background: transparent;
-            backdrop-filter: blur(4px);
-            transition: 0.25s ease;
-            margin: 8px;
+        .btn:hover,.btn-gray:hover{
+            background:rgba(255,77,109,0.18);
+            transform:translateY(-2px);
+            box-shadow:0 6px 18px rgba(255,77,109,0.25);
         }
-
-        .btn:hover,
-        .btn-gray:hover {
-            background: rgba(255, 77, 109, 0.18);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(255, 77, 109, 0.25);
-        }
-
-        .version-text {
-            margin: 30px 0;
-            font-size: 17px;
-            color: #222;
-        }
-
-        .pwd-below {
-            margin-top: 6px;
-            font-size: 14px;
-            color: #333;
-        }
-
+        .pwd-below { margin-top:6px; font-size:14px; color:#333; }
+        .size-tip { margin-top:4px; font-size:14px; color:#444; }
+        .warn-text { margin-top:6px; font-size:15px; color:#c0392b; }
         .log-list {
-            background: rgba(245, 248, 252, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 10px 30px rgba(180, 210, 255, 0.18);
-            border-radius: 24px;
-            padding: 32px 24px;
-            text-align: left;
-            backdrop-filter: blur(6px);
+            background:rgba(245,248,252,0.88);
+            border:1px solid rgba(255,255,255,0.6);
+            box-shadow:0 10px 30px rgba(180,210,255,0.18);
+            border-radius:24px;
+            padding:32px 24px;
+            text-align:left;
+            backdrop-filter:blur(6px);
         }
-
         .log-item {
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding:16px 0;
+            border-bottom:1px solid rgba(0,0,0,0.08);
         }
-
-        .log-item:last-child {
-            border-bottom: none;
-        }
-
-        .log-name {
-            font-weight: 500;
-            color: #222;
-            font-size: 24px;
-        }
-
-        .log-tip {
-            font-size: 16px;
-            color: #555;
-            margin-top: 8px;
-        }
-
+        .log-item:last-child { border-bottom:none; }
+        .log-name { font-weight:500; color:#222; font-size:24px; }
+        .log-tip { font-size:16px; color:#555; margin-top:8px; }
         #page-about {
             position: relative;
             min-height: calc(100vh - 48px);
@@ -228,18 +166,15 @@
             background: rgba(255, 255, 255, 0.45);
             backdrop-filter: blur(6px);
         }
-
         #page-about h1,
         #page-about .desc {
             color: #222;
         }
-
         .copyright {
             margin-top: 40px;
             color: #222;
             font-size: 15px;
         }
-
         .home-download-block {
             margin-top: 80px;
             background: rgba(245, 248, 252, 0.75);
@@ -248,48 +183,40 @@
             padding: 30px 20px;
             backdrop-filter: blur(6px);
         }
-
         .home-download-block h2 {
             margin-bottom: 24px;
             color: #222;
         }
-
         .greeting-text {
             font-size: 22px;
             color: #222;
             margin-bottom: 30px;
         }
-
         .qq-footer {
             margin-top: 40px;
             font-size: 15px;
             color: #222;
         }
-
         .download-card {
             background: rgba(245, 248, 252, 0.88);
             border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 10px 30px rgba(180, 210, 255, 0.18);
+            box-shadow: 0 10px 30px rgba(180,210,255,0.18);
             border-radius: 24px;
             padding: 40px 24px;
             margin: 0 auto;
             max-width: 600px;
         }
-
         .download-card > h1 {
             margin-bottom: 24px;
         }
-
         .download-row {
             margin: 18px 0;
         }
-
         .version-drawer-wrap {
             width: 100%;
             text-align: left;
             margin: 16px 0;
         }
-
         .version-drawer-btn {
             width: 100%;
             padding: 14px 18px;
@@ -302,7 +229,6 @@
             align-items: center;
             font-size: 16px;
         }
-
         .version-drawer-panel {
             max-height: 0;
             overflow: hidden;
@@ -312,29 +238,15 @@
             border: 0 solid #ddd;
             border-width: 0 1px 1px 1px;
         }
-
         .version-drawer-panel.open {
             max-height: 300px;
         }
-
         .version-item {
             padding: 14px 18px;
             cursor: pointer;
         }
-
         .version-item:hover {
             background: rgba(255, 77, 109, 0.12);
-        }
-
-        .old-version-note {
-            margin-top: 14px;
-            font-size: 14px;
-            color: #444;
-        }
-
-        .old-version-note a {
-            color: #ff4d6d;
-            text-decoration: none;
         }
     </style>
 </head>
@@ -342,7 +254,6 @@
 <nav>
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
 </nav>
-
 <div class="drawer" id="drawer">
     <div class="drawer-item" onclick="toggleMenu();switchPage('home')">首页</div>
     <div class="drawer-title-text">----软件----</div>
@@ -350,11 +261,9 @@
     <div class="drawer-item sub-item" onclick="toggleMenu();switchPage('changelog')">AptOS 更新日志</div>
     <div class="drawer-item" onclick="toggleMenu();switchPage('about')">关于我们</div>
 </div>
-
 <div class="page" id="page-home">
     <h1 class="gunmu-main-title">Gunmu©</h1>
     <p class="greeting-text" id="greetingText">早上好</p>
-
     <div class="home-download-block">
         <h2>软件下载</h2>
         <button class="btn" onclick="switchPage('download')">AptOS</button>
@@ -362,66 +271,60 @@
     </div>
     <div class="qq-footer">QQ群:454961204</div>
 </div>
-
 <div class="page" id="page-download" style="display:none;">
     <div class="download-card">
         <h1>下载 APTOS 操作系统</h1>
         <div class="version-drawer-wrap">
             <button class="version-drawer-btn" id="verDrawerBtn">
-                <span id="verShow">32 位版</span>
+                <span id="verShow">32 位版（v0.1）</span>
                 <span>▼</span>
             </button>
             <div class="version-drawer-panel" id="verDrawerPanel">
-                <div class="version-item" data-index="0">32 位版</div>
-                <div class="version-item" data-index="1">16 位版</div>
-            </div>
-            <div class="old-version-note">
-                如果想访问老版本 aptos x32，请访问
-                <a href="https://github.com/Done57/AptOS/" target="_blank">https://github.com/Done57/AptOS/</a>
+                <div class="version-item" data-index="0">32 位版（v0.1）</div>
+                <div class="version-item" data-index="1">16 位经典版</div>
             </div>
         </div>
-
         <div class="download-row">
             <a id="downloadLink" target="_blank">
                 <button class="btn">立即下载当前版本</button>
             </a>
             <div class="pwd-below" id="pwdTip"></div>
+            <div class="size-tip" id="sizeTip"></div>
+            <div class="warn-text" id="warnTip"></div>
         </div>
         <div class="download-row">
             <div class="qq-footer" style="margin:0;">QQ群:454961204</div>
         </div>
     </div>
 </div>
-
 <div class="page" id="page-changelog" style="display:none;">
     <h1>更新日志</h1>
-    <p class="desc">取自 Done57/AptOS 正式版发布记录，按版本由新到旧排序</p>
+    <p class="desc">AptOS 版本发布记录，由新到旧排序</p>
     <div class="log-list">
         <div class="log-item">
-            <div class="log-name">AptOS 32 位版</div>
-            <a href="https://wwbbj.lanzout.com/irroY4e5xo9a" target="_blank">
+            <div class="log-name">AptOS 32 位版 v0.1</div>
+            <a href="https://release-assets.githubusercontent.com/github-production-release-asset/1441395802/56d100f8-a2e9-476b-aef1-dd3bfdfe61c9?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-11-01T10%3A34%3A27Z&rscd=attachment%3B+filename%3Daptos-install.iso&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-11-01T09%3A33%3A34Z&ske=2026-11-01T10%3A34%3A27Z&sks=b&skv=2018-11-09&sig=sKBtGMCRPYl2ZKDMjzsJHeMadWTX2ogq%2BMknkMwmS5I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MzUyNjk3NywibmJmIjoxNzkzNTI2Njc3LCJwYXRoIjoicmVsZWFzc2Vhc3NldHB1Ymxpc2hvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.OqK-uK93rUc9BNXg6yL0doB8Lam1kFIxuzmaXMyojmk&response-content-disposition=attachment%3B%20filename%3Daptos-install.iso&response-content-type=application%2Foctet-stream" target="_blank">
                 <button class="btn-gray">前往下载</button>
             </a>
-            <div class="log-tip">💡提取密码：ck5v</div>
+            <div class="log-tip">💡 aptos-install.iso｜无密码</div>
         </div>
         <div class="log-item">
-            <div class="log-name">AptOS 16 位版</div>
-            <a href="https://wwbbj.lanzout.com/iI8xC4e5zejc" target="_blank">
-                <button class="btn-gray">前往蓝奏云下载</button>
+            <div class="log-name">AptOS 16 位经典版</div>
+            <a href="https://download-sc4.huang1111.cn/api/v3/slave/download/0/bmV3Mi9iYXNpYy8xNjU5NTcvMjAyNi8xMTAxLzE4MDkvQXB0T1MxXzAgMjZIMiAyNjAwNiAxNmJpdCBHdW5tdTFfMiBwcm8uaW1n/AptOS1_0%2026H2%2026006%2016bit%20Gunmu1_2%20pro.img?sign=vyD8M-UcHE-_70Ge1HlawcZJMxD31UVeWFnU0cOzB6U%3D%3A1793529648" target="_blank">
+                <button class="btn-gray">前往下载</button>
             </a>
-            <div class="log-tip">💡提取密码：4eqi</div>
+            <div class="log-tip">💡 AptOS1_0 26H2 26006 16bit Gunmu1_2 pro.img｜无密码</div>
+            <div class="warn-text">⚠️16位版本已停止更新</div>
         </div>
     </div>
     <div class="qq-footer">QQ群:454961204</div>
 </div>
-
 <div class="page" id="page-about" style="display:none;">
     <h1>关于</h1>
     <p class="desc">Gunmu© / APTOS 自研操作系统项目</p>
-    <p class="copyright">https://github.com/Done57/</p>
+    <p class="copyright">Gunmu ©️ 计鸽ace</p>
     <div class="qq-footer">QQ群:454961204</div>
 </div>
-
 <script>
     function toggleMenu() {
         const d = document.getElementById("drawer");
@@ -430,7 +333,6 @@
             p.classList.toggle("shift");
         })
     }
-
     function switchPage(name) {
         const pages = ["home", "download", "changelog", "about"];
         pages.forEach(p => {
@@ -438,26 +340,32 @@
         })
         document.getElementById("page-" + name).style.display = "block";
     }
-
     function setGreeting() {
         const hour = new Date().getHours();
-        const greeting = hour < 18 ? "早上好" : "晚上好";
+        let greeting;
+        if (hour < 12) greeting = "早上好";
+        else if (hour < 18) greeting = "下午好";
+        else greeting = "晚上好";
         document.getElementById("greetingText").innerText = greeting;
     }
     setGreeting();
 
     const versions = [
         {
-            name: "32 位版",
-            url: "https://wwbbj.lanzout.com/irroY4e5xo9a",
-            filename: "aptos32.img",
-            pwd: "提取密码：ck5v"
+            name: "32 位版（v0.1）",
+            url: "https://release-assets.githubusercontent.com/github-production-release-asset/1441395802/56d100f8-a2e9-476b-aef1-dd3bfdfe61c9?sp=r&sv=2018-11-09&sr=b&spr=https&se=2026-11-01T10%3A34%3A27Z&rscd=attachment%3B+filename%3Daptos-install.iso&rsct=application%2Foctet-stream&skoid=96c2d410-5711-43a1-aedd-ab1947aa7ab0&sktid=398a6654-997b-47e9-b12b-9515b896b4de&skt=2026-11-01T09%3A33%3A34Z&ske=2026-11-01T10%3A34%3A27Z&sks=b&skv=2018-11-09&sig=sKBtGMCRPYl2ZKDMjzsJHeMadWTX2ogq%2BMknkMwmS5I%3D&jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmVsZWFzZS1hc3NldHMuZ2l0aHVidXNlcmNvbnRlbnQuY29tIiwia2V5Ijoia2V5MSIsImV4cCI6MTc5MzUyNjk3NywibmJmIjoxNzkzNTI2Njc3LCJwYXRoIjoicmVsZWFzc2Vhc3NldHB1Ymxpc2hvbi5ibG9iLmNvcmUud2luZG93cy5uZXQifQ.OqK-uK93rUc9BNXg6yL0doB8Lam1kFIxuzmaXMyojmk&response-content-disposition=attachment%3B%20filename%3Daptos-install.iso&response-content-type=application%2Foctet-stream",
+            filename: "aptos-install.iso",
+            pwd: "无提取密码",
+            size: "",
+            warn: ""
         },
         {
-            name: "16 位版",
-            url: "https://wwbbj.lanzout.com/iI8xC4e5zejc",
-            filename: "aptos16.img",
-            pwd: "提取密码：4eqi"
+            name: "16 位经典版",
+            url: "https://download-sc4.huang1111.cn/api/v3/slave/download/0/bmV3Mi9iYXNpYy8xNjU5NTcvMjAyNi8xMTAxLzE4MDkvQXB0T1MxXzAgMjZIMiAyNjAwNiAxNmJpdCBHdW5tdTFfMiBwcm8uaW1n/AptOS1_0%2026H2%2026006%2016bit%20Gunmu1_2%20pro.img?sign=vyD8M-UcHE-_70Ge1HlawcZJMxD31UVeWFnU0cOzB6U%3D%3A1793529648",
+            filename: "AptOS1_0 26H2 26006 16bit Gunmu1_2 pro.img",
+            pwd: "无提取密码",
+            size: "",
+            warn: "⚠️16位版本已停止更新"
         }
     ];
 
@@ -467,6 +375,8 @@
     const verShow = document.getElementById("verShow");
     const downloadLink = document.getElementById("downloadLink");
     const pwdTip = document.getElementById("pwdTip");
+    const sizeTip = document.getElementById("sizeTip");
+    const warnTip = document.getElementById("warnTip");
 
     function updateVerUi() {
         const v = versions[currentIndex];
@@ -474,6 +384,8 @@
         downloadLink.href = v.url;
         downloadLink.download = v.filename;
         pwdTip.textContent = v.pwd;
+        sizeTip.textContent = v.size;
+        warnTip.textContent = v.warn;
     }
     updateVerUi();
 
