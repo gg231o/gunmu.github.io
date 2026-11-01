@@ -72,10 +72,6 @@
             color: #000;
         }
 
-        .header-logo {
-            height: 32px;
-        }
-
         .drawer {
             position: fixed;
             top: 48px;
@@ -146,8 +142,8 @@
         h1.gunmu-main-title {
             font-size: 56px;
             font-weight: bold;
-            margin-bottom: 20px;
             color: #222;
+            margin-bottom: 20px;
         }
 
         .desc {
@@ -156,7 +152,6 @@
             margin-bottom: 50px;
         }
 
-        /* 透明按钮 */
         .btn,
         .btn-gray {
             display: inline-block;
@@ -187,13 +182,12 @@
             color: #222;
         }
 
-        .download-pwd-tip {
+        .pwd-below {
+            margin-top: 6px;
             font-size: 14px;
             color: #333;
-            margin-left: 6px;
         }
 
-        /* 更新日志卡片，改成截图同款冷调浅冰白 */
         .log-list {
             background: rgba(245, 248, 252, 0.88);
             border: 1px solid rgba(255, 255, 255, 0.6);
@@ -231,6 +225,12 @@
             margin-top: 8px;
         }
 
+        .log-changelog {
+            margin: 10px 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
         #page-about {
             position: relative;
             min-height: calc(100vh - 48px);
@@ -246,23 +246,12 @@
             color: #222;
         }
 
-        .about-logo {
-            width: 320px;
-            height: auto;
-            margin: 30px auto;
-            display: block;
-            background: rgba(255, 255, 255, 0.85);
-            padding: 12px;
-            border-radius: 12px;
-        }
-
         .copyright {
             margin-top: 40px;
             color: #222;
             font-size: 15px;
         }
 
-        /* 首页下载块，统一同款色调 */
         .home-download-block {
             margin-top: 80px;
             background: rgba(245, 248, 252, 0.75);
@@ -289,7 +278,6 @@
             color: #222;
         }
 
-        /* 下载卡片：和日志页统一，截图同款冰白 */
         .download-card {
             background: rgba(245, 248, 252, 0.88);
             border: 1px solid rgba(255, 255, 255, 0.6);
@@ -299,18 +287,66 @@
             margin: 0 auto;
             max-width: 600px;
         }
+
         .download-card > h1 {
             margin-bottom: 24px;
         }
+
         .download-row {
             margin: 18px 0;
+        }
+
+        /* 下载页内嵌版本抽屉 */
+        .version-drawer-wrap {
+            width: 100%;
+            text-align: left;
+            margin:16px 0;
+        }
+        .version-drawer-btn {
+            width:100%;
+            padding:14px 18px;
+            border-radius:12px;
+            border: 1px solid #ddd;
+            background: rgba(255,255,255,0.65);
+            cursor:pointer;
+            display:flex;
+            justify-content: space-between;
+            align-items:center;
+            font-size:16px;
+        }
+        .version-drawer-panel {
+            max-height:0;
+            overflow:hidden;
+            transition: max-height 0.35s ease;
+            background:rgba(255,255,255,0.55);
+            border-radius:0 0 12px 12px;
+            border: 0 solid #ddd;
+            border-width:0 1px 1px 1px;
+        }
+        .version-drawer-panel.open {
+            max-height: 300px;
+        }
+        .version-item {
+            padding:14px 18px;
+            cursor:pointer;
+        }
+        .version-item:hover {
+            background:rgba(255,77,109,0.12);
+        }
+        .old-version-note {
+            margin-top:14px;
+            font-size:14px;
+            color:#444;
+        }
+        .old-version-note a {
+            color:#ff4d6d;
+            text-decoration:none;
         }
     </style>
 </head>
 <body>
 <nav>
     <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    <img class="header-logo" src="https://p3-flow-image-sign.byteimg.com/tos-cn-i-a9rns2rl98/30111400083440489411421042400101~tplv-a9rns2rl98-image.image" alt="G Logo">
 </nav>
 
 <div class="drawer" id="drawer">
@@ -321,7 +357,6 @@
     <div class="drawer-item" onclick="toggleMenu();switchPage('about')">关于我们</div>
 </div>
 
-<!-- 首页 -->
 <div class="page" id="page-home">
     <h1 class="gunmu-main-title">Gunmu©</h1>
     <p class="greeting-text" id="greetingText">早上好</p>
@@ -334,23 +369,29 @@
     <div class="qq-footer">QQ群:454961204</div>
 </div>
 
-<!-- AptOS 主下载界面 -->
 <div class="page" id="page-download" style="display:none;">
     <div class="download-card">
         <h1>下载 APTOS 操作系统</h1>
-        <div class="download-row">
-            <p class="version-text">当前版本：<span id="verText">APTOS 32 位版</span></p>
+        <div class="version-drawer-wrap">
+            <button class="version-drawer-btn" id="verDrawerBtn">
+                <span id="verShow">最新 32 位版</span>
+                <span>▼</span>
+            </button>
+            <div class="version-drawer-panel" id="verDrawerPanel">
+                <div class="version-item" data-index="0">最新 32 位版</div>
+                <div class="version-item" data-index="1">16 位经典版</div>
+            </div>
+            <div class="old-version-note">
+                如果想访问老版本 aptos x32，请访问
+                <a href="https://github.com/Done57/AptOS/" target="_blank">https://github.com/Done57/AptOS/</a>
+            </div>
         </div>
+
         <div class="download-row">
-            <button class="btn-gray" onclick="changeVer()">切换系统版本</button>
-        </div>
-        <div class="download-row">
-            <span>
-                <a id="downloadLink" target="_blank">
-                    <button class="btn">立即下载当前版本</button>
-                </a>
-                <span class="download-pwd-tip" id="pwdTip"></span>
-            </span>
+            <a id="downloadLink" target="_blank">
+                <button class="btn">立即下载当前版本</button>
+            </a>
+            <div class="pwd-below" id="pwdTip"></div>
         </div>
         <div class="download-row">
             <div class="qq-footer" style="margin:0;">QQ群:454961204</div>
@@ -358,36 +399,51 @@
     </div>
 </div>
 
-<!-- 更新日志 -->
 <div class="page" id="page-changelog" style="display:none;">
     <h1>更新日志</h1>
-    <p class="desc">所有镜像，按文件大小从大到小排列</p>
+    <p class="desc">取自 Done57/AptOS 正式版发布记录，按版本由新到旧排序</p>
     <div class="log-list">
         <div class="log-item">
-            <div class="log-name">AptOS2_0 27H1 Gunmu1_3.img</div>
-            <div class="log-size">大小：64 MB</div>
+            <div class="log-name">AptOS v2.0 Stable（最新 32 位）</div>
+            <div class="log-size">镜像：aptos2.0.img</div>
+            <div class="log-changelog">
+                <ul>
+                    <li>重写内核内存管理，大幅提升稳定性</li>
+                    <li>完善文件系统驱动，修复大量文件读写崩溃</li>
+                    <li>新增基础图形驱动，支持简单 GUI</li>
+                    <li>增加内置命令，扩展终端能力</li>
+                    <li>修复引导程序在部分模拟器启动失败问题</li>
+                </ul>
+            </div>
             <a href="https://wwbbj.lanzout.com/irroY4e5xo9a" target="_blank">
-                <button class="btn-gray">前往蓝奏云下载</button>
+                <button class="btn-gray">前往下载</button>
             </a>
-            <div class="log-tip">💡提取密码：ck5v，打开网盘页面输入密码下载镜像</div>
+            <div class="log-tip">💡提取密码：ck5v</div>
         </div>
         <div class="log-item">
-            <div class="log-name">AptOS1_0 26H1 Gunmu1_0.img</div>
-            <div class="log-size">大小：1.4 MB</div>
+            <div class="log-name">AptOS v1.0 Stable（16 位经典版）</div>
+            <div class="log-size">镜像：aptos1.0.img</div>
+            <div class="log-changelog">
+                <ul>
+                    <li>AptOS 第一个正式稳定发行版</li>
+                    <li>基础 16 位实模式内核，兼容 DOS 模拟器</li>
+                    <li>简单 FAT 文件系统，支持读写</li>
+                    <li>内置 shell，支持基础命令</li>
+                    <li>适合在 DOSBox、Limbo 等轻量虚拟机运行</li>
+                </ul>
+            </div>
             <a href="https://wwbbj.lanzout.com/iI8xC4e5zejc" target="_blank">
                 <button class="btn-gray">前往蓝奏云下载</button>
             </a>
-            <div class="log-tip">💡提取密码：4eqi，打开网盘页面输入密码下载镜像</div>
+            <div class="log-tip">💡提取密码：4eqi</div>
         </div>
     </div>
     <div class="qq-footer">QQ群:454961204</div>
 </div>
 
-<!-- 关于 -->
 <div class="page" id="page-about" style="display:none;">
     <h1>关于</h1>
     <p class="desc">Gunmu© / APTOS 自研操作系统项目</p>
-    <img class="about-logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Qemu_logo.svg/600px-Qemu_logo.svg.png" alt="项目标识">
     <p class="copyright">一切版权 ©️ 计鸽ace</p>
     <div class="qq-footer">QQ群:454961204</div>
 </div>
@@ -409,7 +465,6 @@
         document.getElementById("page-" + name).style.display = "block";
     }
 
-    // 自动显示早上好/晚上好
     function setGreeting() {
         const hour = new Date().getHours();
         const greeting = hour < 18 ? "早上好" : "晚上好";
@@ -417,42 +472,48 @@
     }
     setGreeting();
 
-    // AptOS 下载版本逻辑
     const versions = [
         {
-            name: "APTOS 32 位版",
+            name: "最新 32 位版",
             url: "https://wwbbj.lanzout.com/irroY4e5xo9a",
             filename: "aptos32.img",
             pwd: "提取密码：ck5v"
         },
         {
-            name: "APTOS 16 位经典版",
+            name: "16 位经典版",
             url: "https://wwbbj.lanzout.com/iI8xC4e5zejc",
             filename: "aptos16.img",
             pwd: "提取密码：4eqi"
         }
     ];
-    let now = 0;
 
-    const verText = document.getElementById("verText");
-    const downLink = document.getElementById("downloadLink");
+    let currentIndex = 0;
+    const verDrawerBtn = document.getElementById("verDrawerBtn");
+    const verDrawerPanel = document.getElementById("verDrawerPanel");
+    const verShow = document.getElementById("verShow");
+    const downloadLink = document.getElementById("downloadLink");
     const pwdTip = document.getElementById("pwdTip");
 
-    function changeVer() {
-        now++;
-        if (now >= versions.length) now = 0;
-        updateDownloadUi();
+    function updateVerUi() {
+        const v = versions[currentIndex];
+        verShow.textContent = v.name;
+        downloadLink.href = v.url;
+        downloadLink.download = v.filename;
+        pwdTip.textContent = v.pwd;
     }
+    updateVerUi();
 
-    function updateDownloadUi() {
-        const v = versions[now];
-        verText.innerText = v.name;
-        downLink.href = v.url;
-        downLink.download = v.filename;
-        pwdTip.innerText = v.pwd;
-    }
+    verDrawerBtn.onclick = () => {
+        verDrawerPanel.classList.toggle("open");
+    };
 
-    updateDownloadUi();
+    document.querySelectorAll(".version-item").forEach(item => {
+        item.onclick = () => {
+            currentIndex = Number(item.dataset.index);
+            updateVerUi();
+            verDrawerPanel.classList.remove("open");
+        }
+    })
 </script>
 </body>
 </html>
