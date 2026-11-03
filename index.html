@@ -138,9 +138,21 @@
             transform:translateY(-2px);
             box-shadow:0 6px 18px rgba(255,77,109,0.25);
         }
-        .pwd-below { margin-top:6px; font-size:14px; color:#333; }
+        .more-version-link{
+            display:block;
+            margin:12px 0 4px;
+            font-size:16px;
+            color:#c22e4c;
+            cursor:pointer;
+            text-decoration:underline;
+        }
         .size-tip { margin-top:4px; font-size:14px; color:#444; }
         .warn-text { margin-top:6px; font-size:15px; color:#c0392b; }
+        .more-ver-tip {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+        }
         .log-list {
             background:rgba(245,248,252,0.88);
             border:1px solid rgba(255,255,255,0.6);
@@ -157,6 +169,11 @@
         .log-item:last-child { border-bottom:none; }
         .log-name { font-weight:500; color:#222; font-size:24px; }
         .log-tip { font-size:16px; color:#555; margin-top:8px; }
+        .stop-update-tip{
+            font-size:13px;
+            color:#999;
+            margin-left:8px;
+        }
         #page-about {
             position: relative;
             min-height: calc(100vh - 48px);
@@ -174,6 +191,17 @@
             margin-top: 40px;
             color: #222;
             font-size: 15px;
+        }
+        .about-qa-title{
+            margin-top:32px;
+            font-size:18px;
+            font-weight:bold;
+            color:#222;
+        }
+        .about-qa-text{
+            margin-top:8px;
+            font-size:15px;
+            color:#333;
         }
         .home-download-block {
             margin-top: 80px;
@@ -276,19 +304,19 @@
         <h1>下载 APTOS 操作系统</h1>
         <div class="version-drawer-wrap">
             <button class="version-drawer-btn" id="verDrawerBtn">
-                <span id="verShow">32 位版（v0.1）</span>
+                <span id="verShow">最新32位下载</span>
                 <span>▼</span>
             </button>
             <div class="version-drawer-panel" id="verDrawerPanel">
-                <div class="version-item" data-index="0">32 位版（v0.1）</div>
-                <div class="version-item" data-index="1">16 位经典版</div>
+                <div class="version-item" data-index="0">最新32位下载</div>
+                <div class="version-item" data-index="1">16 位经典版（已停止更新）</div>
             </div>
         </div>
         <div class="download-row">
             <a id="downloadLink" target="_blank">
                 <button class="btn">立即下载当前版本</button>
             </a>
-            <div class="pwd-below" id="pwdTip"></div>
+            <a class="more-version-link" href="https://github.com/Done57/AptOS/" target="_blank">更多版本</a>
             <div class="size-tip" id="sizeTip"></div>
             <div class="warn-text" id="warnTip"></div>
         </div>
@@ -302,104 +330,73 @@
     <p class="desc">AptOS 版本发布记录，由新到旧排序</p>
     <div class="log-list">
         <div class="log-item">
-            <div class="log-name">AptOS 32 位版 v0.1</div>
+            <div class="log-name">AptOS 最新32位下载</div>
             <a href="https://pan.huang1111.cn/s/ka9qlSB" target="_blank">
                 <button class="btn-gray">前往网盘下载</button>
             </a>
-            <div class="log-tip">💡 aptos-install.iso｜网盘分享页</div>
+            <div class="log-tip">镜像：.img</div>
         </div>
         <div class="log-item">
-            <div class="log-name">AptOS 16 位经典版</div>
-            <a href="https://pan.huang1111.cn/s/Mn3PwFx" target="_blank">
+            <div class="log-name">AptOS 16 位经典版 <span class="stop-update-tip">（已停止更新）</span></div>
+            <a href="https://pan.huang1111.cn/s/xxxxxx" target="_blank">
                 <button class="btn-gray">前往网盘下载</button>
             </a>
-            <div class="log-tip">💡 AptOS1_0 26H2 26006 16bit Gunmu1_2 pro.img｜网盘分享页</div>
-            <div class="warn-text">⚠️16位版本已停止更新</div>
+            <div class="log-tip">需要密码获取下载</div>
         </div>
     </div>
     <div class="qq-footer">QQ群:454961204</div>
 </div>
 <div class="page" id="page-about" style="display:none;">
-    <h1>关于</h1>
-    <p class="desc">Gunmu© / APTOS 自研操作系统项目</p>
-    <p class="copyright">Gunmu ©️ 计鸽ace</p>
-    <div class="qq-footer">QQ群:454961204</div>
+    <h1>关于 AptOS</h1>
+    <p class="desc">aptos，一个自研操作系统</p>
+    <div class="copyright">© Gunmu Done57<br>QQ群：454961204</div>
+    <div class="about-qa-title">为什么用AI来做网站?</div>
+    <div class="about-qa-text">因为没有人会写html，不会写，就用AI写了</div>
 </div>
 <script>
-    function toggleMenu() {
-        const d = document.getElementById("drawer");
-        d.classList.toggle("open");
-        document.querySelectorAll(".page").forEach(p => {
-            p.classList.toggle("shift");
-        })
-    }
-    function switchPage(name) {
-        const pages = ["home", "download", "changelog", "about"];
-        pages.forEach(p => {
-            document.getElementById("page-" + p).style.display = "none";
-        })
-        document.getElementById("page-" + name).style.display = "block";
-    }
-    function setGreeting() {
-        const hour = new Date().getHours();
-        let greeting;
-        if (hour < 12) greeting = "早上好";
-        else if (hour < 18) greeting = "下午好";
-        else greeting = "晚上好";
-        document.getElementById("greetingText").innerText = greeting;
-    }
-    setGreeting();
-
     const versions = [
         {
-            name: "32 位版（v0.1）",
-            url: "https://pan.huang1111.cn/s/ka9qlSB",
-            filename: "aptos-install.iso",
-            pwd: "前往网盘分享页",
-            size: "",
-            warn: ""
+            name: "最新32位下载",
+            link: "https://pan.huang1111.cn/s/ka9qlSB"
         },
         {
-            name: "16 位经典版",
-            url: "https://pan.huang1111.cn/s/Mn3PwFx",
-            filename: "AptOS1_0 26H2 26006 16bit Gunmu1_2 pro.img",
-            pwd: "前往网盘分享页",
-            size: "",
-            warn: "⚠️16位版本已停止更新"
+            name: "16 位经典版（已停止更新）",
+            link: "https://pan.huang1111.cn/s/xxxxxx"
         }
     ];
-
-    let currentIndex = 0;
+    let currentVer = 0;
     const verDrawerBtn = document.getElementById("verDrawerBtn");
     const verDrawerPanel = document.getElementById("verDrawerPanel");
     const verShow = document.getElementById("verShow");
     const downloadLink = document.getElementById("downloadLink");
-    const pwdTip = document.getElementById("pwdTip");
-    const sizeTip = document.getElementById("sizeTip");
-    const warnTip = document.getElementById("warnTip");
-
-    function updateVerUi() {
-        const v = versions[currentIndex];
-        verShow.textContent = v.name;
-        downloadLink.href = v.url;
-        downloadLink.download = v.filename;
-        pwdTip.textContent = v.pwd;
-        sizeTip.textContent = v.size;
-        warnTip.textContent = v.warn;
+    function refreshVersion() {
+        const v = versions[currentVer];
+        verShow.innerText = v.name;
+        downloadLink.href = v.link;
     }
-    updateVerUi();
-
     verDrawerBtn.onclick = () => {
         verDrawerPanel.classList.toggle("open");
     };
-
     document.querySelectorAll(".version-item").forEach(item => {
         item.onclick = () => {
-            currentIndex = Number(item.dataset.index);
-            updateVerUi();
+            currentVer = Number(item.dataset.index);
+            refreshVersion();
             verDrawerPanel.classList.remove("open");
-        }
-    })
+        };
+    });
+    refreshVersion();
+    function toggleMenu() {
+        document.getElementById("drawer").classList.toggle("open");
+    }
+    function switchPage(name) {
+        document.querySelectorAll(".page").forEach(p => p.style.display = "none");
+        document.getElementById("page-" + name).style.display = "block";
+    }
+    const greetingText = document.getElementById("greetingText");
+    const hour = new Date().getHours();
+    if (hour < 12) greetingText.innerText = "早上好";
+    else if (hour < 18) greetingText.innerText = "下午好";
+    else greetingText.innerText = "晚上好";
 </script>
 </body>
 </html>
